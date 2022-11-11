@@ -13,7 +13,7 @@ public class HealthBarBehavior : MonoBehaviour
     public void SetHealth(float currentHealth, float maxHealth)
     {
 
-        gameObject.SetActive(currentHealth < maxHealth);
+        //gameObject.SetActive(currentHealth < maxHealth);
         //background.gameObject.SetActive(currentHealth < maxHealth);
         //fill.gameObject.SetActive(currentHealth < maxHealth);
         fill.fillAmount = currentHealth / maxHealth;
