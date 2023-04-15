@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public float currentHealth, maxHealth;
+    public HealthBarBehavior enemyHealthBar;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
         
     }
 
@@ -15,4 +20,15 @@ public class Enemy : MonoBehaviour
     {
         
     }
+
+    public void TakeHit(float damage)
+    {
+        currentHealth -= damage;
+        enemyHealthBar.SetHealth(currentHealth, maxHealth);
+
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }    
 }
