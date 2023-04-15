@@ -5,15 +5,16 @@ using UnityEngine;
 public class PlayerBullet : MonoBehaviour
 {
     public Enemy enemy;
-    private float bulletDamage = 1f;
-    private float launchVelocity = 10f;
+    public PlayerStatus playerStats;
+    private float bulletDamage;
+    private float launchVelocity = 20f;
     private Vector2 attackTarget;
     private bool startAttack;
 
     // Start is called before the first frame update
     void Start()
     {
-         
+        bulletDamage = playerStats.attackDamage;
     }
 
     // Update is called once per frame
@@ -32,17 +33,12 @@ public class PlayerBullet : MonoBehaviour
         
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
             //Debug.Log("Reached Enemy!");
-            Enemy targettedEnemy = collision.GetComponent<Enemy>();
-            //targettedEnemy.currentHealth -= bulletDamage;
-            //if (targettedEnemy.currentHealth < bulletDamage)
-            //{
-            //    Destroy(collision.gameObject);
-            //}
+            Enemy targettedEnemy = collision.GetComponent<Enemy>();            
             targettedEnemy.TakeHit(bulletDamage);
             Destroy(gameObject);
         }
